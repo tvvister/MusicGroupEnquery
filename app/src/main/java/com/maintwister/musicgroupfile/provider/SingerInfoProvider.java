@@ -1,7 +1,14 @@
 package com.maintwister.musicgroupfile.provider;
 
-/**
- * Created by Andrey on 27.03.2016.
- */
-public class SingerInfoProvider {
+        import com.maintwister.musicgroupfile.model.SingerInfo;
+
+        import retrofit.Callback;
+        import retrofit.http.GET;
+
+///http://download.cdn.yandex.net/mobilization-2016/artists.json
+public interface SingerInfoProvider {
+    static public String uri = "http://download.cdn.yandex.net/mobilization-2016";
+    @GET("/artists.json")      //here is the other url part.best way is to start using /
+    public void getAllSingers(Callback<SingerInfo[]> response);     //string user is for passing values from edittext for eg: user=basil2style,google
+    //response is the response from the server which is now in the POJO
 }
