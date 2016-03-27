@@ -1,36 +1,27 @@
 package com.maintwister.musicgroupfile.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 public class SingerInfo {
-
-    @SerializedName("id")
-    @Expose
     private Integer id;
-    @SerializedName("name")
-    @Expose
     private String name;
-    @SerializedName("genres")
-    @Expose
     private List<String> genres = new ArrayList<String>();
-    @SerializedName("tracks")
-    @Expose
     private Integer tracks;
-    @SerializedName("albums")
-    @Expose
     private Integer albums;
-    @SerializedName("link")
-    @Expose
     private String link;
-    @SerializedName("description")
-    @Expose
     private String description;
+    private Cover cover;
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    /**
+     *
+     * @return
+     * The id
+     */
     public Integer getId() {
         return id;
     }
@@ -70,18 +61,6 @@ public class SingerInfo {
     public List<String> getGenres() {
         return genres;
     }
-    public String getGenresString()
-    {
-        if (genres == null || genres.isEmpty()) return "";
-        StringBuilder sb = new StringBuilder();
-        for (String genres : getGenres())
-        {
-            sb.append(genres);
-            sb.append(", ");
-        }
-
-        return sb.substring(0, Math.max(sb.length() - 3, 0));
-    }
 
     /**
      *
@@ -117,26 +96,6 @@ public class SingerInfo {
      */
     public Integer getAlbums() {
         return albums;
-    }
-
-    public String getMusicCount()
-    {
-        String info = null;
-        if (getAlbums() > 0)
-        {
-            info = getAlbums().toString() + " альбомов";
-        }
-        else
-        {
-            return getTracks() > 0 ? getTracks() + "трэков" : "";
-        }
-        if (getTracks() > 0)
-        {
-            info += ", " + getTracks() + "трэков";
-            return info;
-        }
-
-        return info;
     }
 
     /**
@@ -189,5 +148,60 @@ public class SingerInfo {
      * @return
      * The cover
      */
+    public Cover getCover() {
+        return cover;
+    }
 
+    /**
+     *
+     * @param cover
+     * The cover
+     */
+    public void setCover(Cover cover) {
+        this.cover = cover;
+    }
+
+    public String getSmall() {
+        return cover.getSmall();
+    }
+
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
+    }
+
+    public String getGenresString()
+    {
+        if (genres == null || genres.isEmpty()) return "";
+        StringBuilder sb = new StringBuilder();
+        for (String genres : getGenres())
+        {
+            sb.append(genres);
+            sb.append(", ");
+        }
+
+        return sb.substring(0, Math.max(sb.length() - 3, 0));
+    }
+    public String getMusicCount()
+    {
+        String info = null;
+        if (getAlbums() > 0)
+        {
+            info = getAlbums().toString() + " альбомов";
+        }
+        else
+        {
+            return getTracks() > 0 ? getTracks() + "трэков" : "";
+        }
+        if (getTracks() > 0)
+        {
+            info += ", " + getTracks() + "трэков";
+            return info;
+        }
+
+        return info;
+    }
 }
