@@ -38,6 +38,10 @@ public class SingerInfosAdapter extends BaseAdapter {
         return singerInfos[position];
     }
 
+    public SingerInfo getSingerInfo(int position) {
+        return (SingerInfo)singerInfos[position];
+    }
+
     // id по позиции
     @Override
     public long getItemId(int position) {

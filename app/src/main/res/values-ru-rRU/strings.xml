@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Исполнители</string>
     <string name="main_activity_title">Исполнители</string>
+    <string name="desc_title">Биография</string>
 </resources>

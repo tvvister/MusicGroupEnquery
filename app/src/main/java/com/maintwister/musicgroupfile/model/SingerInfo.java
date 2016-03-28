@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 
+
 public class SingerInfo {
     private Integer id;
     private String name;
@@ -165,6 +166,10 @@ public class SingerInfo {
         return cover.getSmall();
     }
 
+    public String getBig() {
+        return cover.getBig();
+    }
+
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
     }
@@ -203,5 +208,16 @@ public class SingerInfo {
         }
 
         return info;
+    }
+
+    public String getMusicCount2()
+    {
+        return getMusicCount2(getMusicCount());
+    }
+
+    public String getMusicCount2(String info)
+    {
+        String musicCount = getMusicCount();
+        return  musicCount != null ? musicCount.replace(", ", " · ") : "";
     }
 }
