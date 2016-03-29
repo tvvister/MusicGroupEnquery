@@ -188,7 +188,7 @@ public class SingerInfo {
             sb.append(", ");
         }
 
-        return sb.substring(0, Math.max(sb.length() - 3, 0));
+        return sb.substring(0, Math.max(sb.length() - 2, 0));
     }
     public String getMusicCount()
     {

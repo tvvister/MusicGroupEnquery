@@ -12,6 +12,7 @@
         android:orientation="vertical">
     <ScrollView android:id="@+id/ScrlView" android:layout_width="fill_parent" android:layout_height="fill_parent" >
     <LinearLayout android:orientation="vertical"
+
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
@@ -22,21 +23,25 @@
             android:layout_height="300dp" />
 
             <TextView android:layout_width="match_parent"
+                android:padding="3dp"
                 android:textColor="@android:color/darker_gray"
                 android:layout_height="wrap_content"
                 android:text="@{info.genresString}" />
             <TextView android:layout_width="match_parent"
                 android:textColor="@android:color/darker_gray"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:text="@{info.musicCount2}"/>
 
             <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
+                android:padding="3dp"
                 android:text="@string/desc_title"/>
 
             <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:text="@{info.description}"/>
 
 
