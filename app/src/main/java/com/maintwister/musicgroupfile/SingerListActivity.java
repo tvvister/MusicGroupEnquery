@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -32,7 +33,7 @@ public class SingerListActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
-
+        Log.i("new activity", this.hashCode() + "");
         pbar = (ProgressBar) findViewById(R.id.progressBar);
         recView = (RecyclerView) findViewById(R.id.recView);
         recView.setLayoutManager(new LinearLayoutManager(this));

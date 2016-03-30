@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.maintwister.musicgroupfile.databinding.SingerItemBinding;
 import com.maintwister.musicgroupfile.model.SingerInfo;
@@ -45,6 +46,6 @@ public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoV
 
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String url) {
-        Picasso.with(view.getContext()).load(url).into(view);
+        Picasso.with(view.getContext()).load(url).placeholder(R.drawable.spinner).into(view);
     }
 }
