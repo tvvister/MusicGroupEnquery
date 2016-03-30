@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SingerListActivity">
+            android:name=".SingerListActivity"
+            android:launchMode="singleTop" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data

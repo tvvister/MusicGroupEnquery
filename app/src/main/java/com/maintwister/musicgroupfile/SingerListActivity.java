@@ -19,7 +19,6 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-
 public class SingerListActivity extends AppCompatActivity {
     ProgressBar pbar;
     RecyclerView recView;
