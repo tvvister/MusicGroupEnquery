@@ -16,6 +16,7 @@ public class SingerCardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singer_card);
+        // overridePendingTransition(R.anim.left_to_right, R.anim.left_to_right);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -29,4 +30,10 @@ public class SingerCardActivity extends AppCompatActivity {
             binding.setInfo(singerInfo);
         }
     }
+
+/*    @Override
+    public void finish(){
+        super.finish();
+        overridePendingTransition(R.anim.right_to_left, R.anim.right_to_left);
+    }*/
 }

@@ -1,6 +1,8 @@
 package com.maintwister.musicgroupfile;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -44,12 +46,17 @@ public class SingerListActivity extends AppCompatActivity {
             public void success(SingerInfo[] singerInfos, Response response) {
                 adapter = new SingersRecyclerViewAdapter(singerInfos, new ISendMessage() {
                     @Override
-                    public void sendMessage(SingerInfo singerInfo) {
+                    public void sendMessage(SingerInfo singerInfo, int x, int y) {
 
                         Intent intent = new Intent(SingerListActivity.this, SingerCardActivity.class);
                         Gson gson = new Gson();
                         intent.putExtra("singerInfo", gson.toJson(singerInfo));
-                        startActivity(intent);
+                        Bundle bundle = null;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            bundle = ActivityOptions.makeScaleUpAnimation(recView, x, y, 100, 100).toBundle();
+                            SingerListActivity.this.startActivity(intent, bundle);
+                        }
+                        else SingerListActivity.this.startActivity(intent);
                     }
                 });
                 SingerListActivity.this.recView.setAdapter(adapter);
