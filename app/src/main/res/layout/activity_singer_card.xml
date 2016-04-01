@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-        >
+    android:layout_height="wrap_content">
     <data>
-        <variable name="info" type="com.maintwister.musicgroupfile.model.SingerInfo" />
+        <variable name="singerInfoViewModel" type="com.maintwister.musicgroupfile.model.SingerInfoViewModel" />
     </data>
 
     <LinearLayout
@@ -16,22 +16,23 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            app:imageUrl="@{info.big}"
+        <com.maintwister.musicgroupfile.view.ImageViewTopCrop
+            app:imageUrl="@{singerInfoViewModel.big}"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="300dp"
+            />
 
             <TextView android:layout_width="match_parent"
                 android:padding="3dp"
                 android:textColor="@android:color/darker_gray"
                 android:layout_height="wrap_content"
-                android:text="@{info.genresString}" />
+                android:text="@{singerInfoViewModel.genresString}" />
             <TextView android:layout_width="match_parent"
                 android:textColor="@android:color/darker_gray"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
-                android:text="@{info.musicCount2}"/>
+                android:text="@{singerInfoViewModel.musicCount2}"/>
 
             <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +43,7 @@
             <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
-                android:text="@{info.description}"/>
+                android:text="@{singerInfoViewModel.description}"/>
 
 
     </LinearLayout>

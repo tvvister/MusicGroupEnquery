@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.maintwister.musicgroupfile.databinding.SingerItemBinding;
 import com.maintwister.musicgroupfile.model.SingerInfo;
+import com.maintwister.musicgroupfile.model.SingerInfoViewModel;
 import com.maintwister.musicgroupfile.provider.ISendMessage;
 import com.squareup.picasso.Picasso;
 
@@ -15,11 +16,14 @@ import com.squareup.picasso.Picasso;
  * Created by Andrey on 29.03.2016.
  */
 public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoViewHolder> {
-    SingerInfo[] singerInfos;
+    SingerInfoViewModel[] singerInfoViewModels;
     private final ISendMessage sendMessageAction;
 
     public SingersRecyclerViewAdapter(SingerInfo[] singerInfos, final ISendMessage sendMessageAction) {
-        this.singerInfos = singerInfos;
+        this.singerInfoViewModels = new SingerInfoViewModel[singerInfos.length];
+        for (int index = 0; index < singerInfos.length; ++index) {
+            singerInfoViewModels[index] = new SingerInfoViewModel(singerInfos[index]);
+        }
         this.sendMessageAction = sendMessageAction;
     }
 
@@ -32,23 +36,23 @@ public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoV
 
     @Override
     public void onBindViewHolder(SingerInfoViewHolder holder, int position) {
-        SingerInfo singerInfo = singerInfos[position];
-        holder.binding.setInfo(singerInfo);
+        SingerInfoViewModel singerInfo = singerInfoViewModels[position];
+        holder.binding.setSingerInfoViewModel(singerInfo);
     }
-    public SingerInfo getSingerInfo(int position) {
-        return (SingerInfo)singerInfos[position];
+    public SingerInfoViewModel getSingerInfo(int position) {
+        return singerInfoViewModels[position];
     }
     @Override
     public int getItemCount() {
-        return singerInfos.length;
+        return singerInfoViewModels.length;
     }
 
     @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String url) {
+    public static void loadImage(ImageView view, String imageUrl) {
         Picasso.with(view.getContext())
-                .load(url)
+                .load(imageUrl)
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.color.colorPrimaryDark)
-        .into(view);
+                .into(view);
     }
 }

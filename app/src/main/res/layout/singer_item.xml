@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
 >
     <data>
-        <variable name="info" type="com.maintwister.musicgroupfile.model.SingerInfo" />
+        <variable name="singerInfoViewModel" type="com.maintwister.musicgroupfile.model.SingerInfoViewModel" />
     </data>
 
     <LinearLayout
@@ -14,7 +14,7 @@
 
         <ImageView
             android:animateLayoutChanges="true"
-            app:imageUrl="@{info.small}"
+            app:imageUrl="@{singerInfoViewModel.small}"
             android:width="100dp"
             android:height="100dp"
             android:padding="10dp"
@@ -32,18 +32,18 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
 
-                android:text="@{info.name}"/>
+                android:text="@{singerInfoViewModel.name}"/>
             <TextView android:layout_width="wrap_content"
 
                 android:textColor="@android:color/darker_gray"
                 android:layout_height="wrap_content"
-                android:text="@{info.genresString}" />
+                android:text="@{singerInfoViewModel.genresString}" />
 
             <TextView android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:gravity="bottom"
                 android:layout_height="wrap_content"
-                android:text="@{info.musicCount}"/>
+                android:text="@{singerInfoViewModel.musicCount}"/>
         </LinearLayout>
     </LinearLayout>
 

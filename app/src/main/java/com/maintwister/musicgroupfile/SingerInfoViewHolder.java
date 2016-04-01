@@ -17,7 +17,7 @@ public class SingerInfoViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
 
-                sendMessageAction.sendMessage(binding.getInfo(), v.getWidth() / 2, (int)((v.getY() + v.getHeight()) / 2));
+                sendMessageAction.sendMessage(binding.getSingerInfoViewModel(), v.getWidth() / 2, (int)((v.getY() + v.getHeight()) / 2));
             }
         });
     }

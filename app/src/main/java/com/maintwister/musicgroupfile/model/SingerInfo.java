@@ -177,47 +177,4 @@ public class SingerInfo {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-
-    public String getGenresString()
-    {
-        if (genres == null || genres.isEmpty()) return "";
-        StringBuilder sb = new StringBuilder();
-        for (String genres : getGenres())
-        {
-            sb.append(genres);
-            sb.append(", ");
-        }
-
-        return sb.substring(0, Math.max(sb.length() - 2, 0));
-    }
-    public String getMusicCount()
-    {
-        String info = null;
-        if (getAlbums() > 0)
-        {
-            info = getAlbums().toString() + " альбомов";
-        }
-        else
-        {
-            return getTracks() > 0 ? getTracks() + "трэков" : "";
-        }
-        if (getTracks() > 0)
-        {
-            info += ", " + getTracks() + "трэков";
-            return info;
-        }
-
-        return info;
-    }
-
-    public String getMusicCount2()
-    {
-        return getMusicCount2(getMusicCount());
-    }
-
-    public String getMusicCount2(String info)
-    {
-        String musicCount = getMusicCount();
-        return  musicCount != null ? musicCount.replace(", ", " · ") : "";
-    }
 }

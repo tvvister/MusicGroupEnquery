@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.maintwister.musicgroupfile.databinding.ActivitySingerCardBinding;
-import com.maintwister.musicgroupfile.model.SingerInfo;
+import com.maintwister.musicgroupfile.model.SingerInfoViewModel;
 
 public class SingerCardActivity extends AppCompatActivity {
 
@@ -24,10 +24,10 @@ public class SingerCardActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             Gson gson = new Gson();
-            SingerInfo singerInfo = gson.fromJson(intent.getStringExtra("singerInfo"), SingerInfo.class);
+            SingerInfoViewModel singerInfo = gson.fromJson(intent.getStringExtra("singerInfoViewModel"), SingerInfoViewModel.class);
             actionBar.setTitle(singerInfo.getName());
             ActivitySingerCardBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_singer_card);
-            binding.setInfo(singerInfo);
+            binding.setSingerInfoViewModel(singerInfo);
         }
     }
 
