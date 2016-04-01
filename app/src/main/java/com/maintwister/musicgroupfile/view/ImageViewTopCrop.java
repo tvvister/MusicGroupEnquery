@@ -2,6 +2,7 @@ package com.maintwister.musicgroupfile.view;
 
 import android.content.Context;
 import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -32,7 +33,9 @@ public class ImageViewTopCrop extends ImageView
     protected boolean setFrame(int l, int t, int r, int b)
     {
         Matrix matrix = getImageMatrix();
-        float scaleFactor = getWidth()/(float)getDrawable().getIntrinsicWidth();
+        Drawable drawable = getDrawable();
+        int width = getWidth();
+        float scaleFactor = width /(drawable != null ?(float) drawable.getIntrinsicWidth() : width);
         matrix.setScale(scaleFactor, scaleFactor, 0, 0);
         setImageMatrix(matrix);
         return super.setFrame(l, t, r, b);

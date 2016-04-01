@@ -1,5 +1,8 @@
 package com.maintwister.musicgroupfile.model;
 
+import android.databinding.ObservableField;
+import android.view.View;
+
 import java.util.List;
 
 /**
@@ -70,9 +73,15 @@ public class SingerInfoViewModel {
         return getMusicCount2(getMusicCount());
     }
 
+
     public String getMusicCount2(String info)
     {
         String musicCount = getMusicCount();
         return  musicCount != null ? musicCount.replace(", ", " · ") : "";
     }
+
+    final public ObservableField<Integer> progressBarVisibility = new ObservableField<>(View.INVISIBLE);
+    final public ObservableField<Integer> imageVisibility = new ObservableField<>(View.VISIBLE);
+
+
 }

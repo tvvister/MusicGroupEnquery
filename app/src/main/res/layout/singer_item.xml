@@ -11,15 +11,30 @@
     <LinearLayout
         android:orientation="horizontal"
 >
-
-        <ImageView
-            android:animateLayoutChanges="true"
-            app:imageUrl="@{singerInfoViewModel.small}"
-            android:width="100dp"
-            android:height="100dp"
-            android:padding="10dp"
+        <RelativeLayout
+            android:id="@+id/relative_container"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:animateLayoutChanges="true"
+                app:imageUrl="@{singerInfoViewModel.small}"
+                app:singerInfoViewModel="@{singerInfoViewModel}"
+                android:width="100dp"
+                android:height="100dp"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:visibility="@{singerInfoViewModel.imageVisibility}"
+                android:layout_height="wrap_content" />
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{singerInfoViewModel.progressBarVisibility}"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center" />
+
+        </RelativeLayout>
+
         <LinearLayout
             android:animateLayoutChanges="true"
             android:padding="10dp"

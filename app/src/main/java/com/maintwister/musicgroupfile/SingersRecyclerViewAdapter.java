@@ -3,6 +3,7 @@ package com.maintwister.musicgroupfile;
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -47,12 +48,37 @@ public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoV
         return singerInfoViewModels.length;
     }
 
-    @BindingAdapter({"bind:imageUrl"})
+
+
+    @BindingAdapter({"bind:imageUrl", "bind:singerInfoViewModel"})
+    public static void loadImage(ImageView view, String imageUrl, final SingerInfoViewModel singerInfoViewModel) {
+        singerInfoViewModel.progressBarVisibility.set(View.VISIBLE);
+        singerInfoViewModel.imageVisibility.set(View.INVISIBLE);
+        Picasso.with(view.getContext())
+                .load(imageUrl)
+                .noPlaceholder()//(R.mipmap.ic_launcher)
+                .error(R.color.colorPrimaryDark)
+                .into(view, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+                        singerInfoViewModel.progressBarVisibility.set(View.INVISIBLE);
+                        singerInfoViewModel.imageVisibility.set(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onError() {
+                        singerInfoViewModel.progressBarVisibility.set(View.INVISIBLE);
+                        singerInfoViewModel.imageVisibility.set(View.VISIBLE);
+                    }}
+                );
+    }
+/*    @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
+
         Picasso.with(view.getContext())
                 .load(imageUrl)
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.color.colorPrimaryDark)
-                .into(view);
-    }
+                .into(view                );
+    }*/
 }

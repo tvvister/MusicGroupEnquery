@@ -16,12 +16,29 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <com.maintwister.musicgroupfile.view.ImageViewTopCrop
-            app:imageUrl="@{singerInfoViewModel.big}"
-            android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            />
+        <RelativeLayout
+            android:id="@+id/relative_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.maintwister.musicgroupfile.view.ImageViewTopCrop
+                app:imageUrl="@{singerInfoViewModel.big}"
+                app:singerInfoViewModel="@{singerInfoViewModel}"
+
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                />
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{singerInfoViewModel.progressBarVisibility}"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center" />
+
+        </RelativeLayout>
+
+
 
             <TextView android:layout_width="match_parent"
                 android:padding="3dp"
