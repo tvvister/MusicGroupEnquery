@@ -8,6 +8,8 @@ import java.util.List;
 public class SingerInfoViewModel {
     private final SingerInfo singerInfo;
 
+
+
     public SingerInfoViewModel(SingerInfo singerInfo){
         this.singerInfo = singerInfo;
     }
