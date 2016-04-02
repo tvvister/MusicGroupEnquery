@@ -5,16 +5,40 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
     >
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:drawSelectorOnTop="false"/>
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
 
-        android:layout_width="152dp"
-        android:layout_height="152dp"
-        android:id="@+id/progressBar"
-        android:layout_gravity="center_horizontal" />h
+    <RelativeLayout
+        android:id="@+id/relative_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawSelectorOnTop="false"/>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:id="@+id/progressBar"
+            />
+
+<!--        <ImageView
+            android:animateLayoutChanges="true"
+            app:imageUrl="@{singerInfoViewModel.small}"
+            app:singerInfoViewModel="@{singerInfoViewModel}"
+            android:width="100dp"
+            android:height="100dp"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:visibility="@{singerInfoViewModel.imageVisibility}"
+            android:layout_height="wrap_content" />
+        <ProgressBar
+ />-->
+
+    </RelativeLayout>
+
+
 </LinearLayout>
