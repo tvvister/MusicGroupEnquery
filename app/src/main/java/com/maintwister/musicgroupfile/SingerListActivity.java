@@ -67,5 +67,4 @@ public class SingerListActivity extends AppCompatActivity {
         });
     }
 
-
 }
