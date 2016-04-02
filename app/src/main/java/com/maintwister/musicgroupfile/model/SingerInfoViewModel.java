@@ -92,6 +92,7 @@ public class SingerInfoViewModel {
     }
 
     final public ObservableField<Integer> progressBarVisibility = new ObservableField<>(View.INVISIBLE);
+    final public ObservableField<Integer> errorViewVisibility = new ObservableField<>(View.GONE);
     final public ObservableField<Integer> imageVisibility = new ObservableField<>(View.VISIBLE);
 
 

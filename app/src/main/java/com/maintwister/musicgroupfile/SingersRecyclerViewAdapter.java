@@ -69,6 +69,7 @@ public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoV
                     public void onError() {
                         singerInfoViewModel.progressBarVisibility.set(View.INVISIBLE);
                         singerInfoViewModel.imageVisibility.set(View.VISIBLE);
+                        singerInfoViewModel.errorViewVisibility.set(View.VISIBLE);
                     }}
                 );
     }
