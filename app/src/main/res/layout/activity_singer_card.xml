@@ -50,7 +50,15 @@
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="@{singerInfoViewModel.musicCount2}"/>
-
+            <TextView
+                android:id="@+id/linkTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{singerInfoViewModel.linkVisibility}"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:padding="3dp"
+                android:text="@{singerInfoViewModel.link}" />
             <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"

@@ -2,6 +2,7 @@ package com.maintwister.musicgroupfile.model;
 
 import android.databinding.ObservableField;
 import android.view.View;
+import android.webkit.URLUtil;
 
 import java.util.List;
 
@@ -78,6 +79,16 @@ public class SingerInfoViewModel {
     {
         String musicCount = getMusicCount();
         return  musicCount != null ? musicCount.replace(", ", " · ") : "";
+    }
+
+    public String getLink() {
+        return singerInfo.getLink();
+    }
+
+    public int getLinkVisibility() {
+        String link = getLink();
+        if (link == null) return View.GONE;
+        return URLUtil.isHttpUrl(link) || URLUtil.isHttpsUrl(link) ? View.VISIBLE : View.GONE;
     }
 
     final public ObservableField<Integer> progressBarVisibility = new ObservableField<>(View.INVISIBLE);
