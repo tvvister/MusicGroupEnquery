@@ -1,6 +1,7 @@
 package com.maintwister.musicgroupfile;
 
 import android.databinding.BindingAdapter;
+import android.databinding.ObservableField;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.maintwister.musicgroupfile.databinding.SingerItemBinding;
-import com.maintwister.musicgroupfile.model.SingerInfo;
 import com.maintwister.musicgroupfile.model.SingerInfoViewModel;
 import com.maintwister.musicgroupfile.provider.ISendMessage;
 import com.squareup.picasso.Picasso;
@@ -19,20 +19,19 @@ import com.squareup.picasso.Picasso;
 public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoViewHolder> {
     SingerInfoViewModel[] singerInfoViewModels;
     private final ISendMessage sendMessageAction;
+    private final ObservableField<SingerInfoViewModel> selectedSingerInfoViewModel;
 
-    public SingersRecyclerViewAdapter(SingerInfo[] singerInfos, final ISendMessage sendMessageAction) {
-        this.singerInfoViewModels = new SingerInfoViewModel[singerInfos.length];
-        for (int index = 0; index < singerInfos.length; ++index) {
-            singerInfoViewModels[index] = new SingerInfoViewModel(singerInfos[index]);
-        }
+    public SingersRecyclerViewAdapter(SingerInfoViewModel[] singerInfoViewModels, final ISendMessage sendMessageAction, ObservableField<SingerInfoViewModel> selectedSingerInfoViewModel) {
+        this.singerInfoViewModels = singerInfoViewModels;
         this.sendMessageAction = sendMessageAction;
+        this.selectedSingerInfoViewModel = selectedSingerInfoViewModel;
     }
 
     @Override
     public SingerInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         SingerItemBinding binding = SingerItemBinding.inflate(inflater, parent, false);
-        return new SingerInfoViewHolder(binding.getRoot(), sendMessageAction);
+        return new SingerInfoViewHolder(binding.getRoot(), sendMessageAction, selectedSingerInfoViewModel);
     }
 
     @Override
@@ -47,8 +46,6 @@ public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoV
     public int getItemCount() {
         return singerInfoViewModels.length;
     }
-
-
 
     @BindingAdapter({"bind:imageUrl", "bind:singerInfoViewModel"})
     public static void loadImage(ImageView view, String imageUrl, final SingerInfoViewModel singerInfoViewModel) {
@@ -73,13 +70,5 @@ public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoV
                     }}
                 );
     }
-/*    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
 
-        Picasso.with(view.getContext())
-                .load(imageUrl)
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.color.colorPrimaryDark)
-                .into(view                );
-    }*/
 }

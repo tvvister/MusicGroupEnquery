@@ -1,39 +1,31 @@
 package com.maintwister.musicgroupfile;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 
-import com.google.gson.Gson;
+import com.maintwister.musicgroupfile.app.ViewModelActivity;
 import com.maintwister.musicgroupfile.databinding.ActivitySingerCardBinding;
+import com.maintwister.musicgroupfile.model.ApplicationViewModel;
 import com.maintwister.musicgroupfile.model.SingerInfoViewModel;
 
-public class SingerCardActivity extends AppCompatActivity {
+public class SingerCardActivity extends ViewModelActivity<ApplicationViewModel> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singer_card);
-        // overridePendingTransition(R.anim.left_to_right, R.anim.left_to_right);
+
+        final ApplicationViewModel viewModel = getViewModel();
+        SingerInfoViewModel singerInfo = viewModel.selectedSingerInfoViewModel.get();
+
 
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(singerInfo.getName());
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(false);
-        Intent intent = getIntent();
-        if (intent != null) {
-            Gson gson = new Gson();
-            SingerInfoViewModel singerInfo = gson.fromJson(intent.getStringExtra("singerInfoViewModel"), SingerInfoViewModel.class);
-            actionBar.setTitle(singerInfo.getName());
-            ActivitySingerCardBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_singer_card);
-            binding.setSingerInfoViewModel(singerInfo);
-        }
-    }
 
-/*    @Override
-    public void finish(){
-        super.finish();
-        overridePendingTransition(R.anim.right_to_left, R.anim.right_to_left);
-    }*/
+        ActivitySingerCardBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_singer_card);
+        binding.setSingerInfoViewModel(singerInfo);
+    }
 }
