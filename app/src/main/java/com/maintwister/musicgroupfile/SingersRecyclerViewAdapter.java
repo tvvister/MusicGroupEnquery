@@ -48,8 +48,8 @@ public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoV
 
     @BindingAdapter({"bind:imageUrl", "bind:singerInfoViewModel"})
     public static void loadImage(ImageView view, String imageUrl, final SingerInfoViewModel singerInfoViewModel) {
-        singerInfoViewModel.progressBarVisibility.set(View.VISIBLE);
-        singerInfoViewModel.imageVisibility.set(View.INVISIBLE);
+        singerInfoViewModel.isImageLoading.set(true);
+        singerInfoViewModel.isImageVisible.set(false);
         Picasso.with(view.getContext())
                 .load(imageUrl)
                 .noPlaceholder()//(R.mipmap.ic_launcher)
@@ -57,15 +57,16 @@ public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoV
                 .into(view, new com.squareup.picasso.Callback() {
                     @Override
                     public void onSuccess() {
-                        singerInfoViewModel.progressBarVisibility.set(View.INVISIBLE);
-                        singerInfoViewModel.imageVisibility.set(View.VISIBLE);
+                        singerInfoViewModel.isImageLoading.set(false);
+                        singerInfoViewModel.isImageVisible.set(true);
+                        singerInfoViewModel.hasError.set(false);
                     }
 
                     @Override
                     public void onError() {
-                        singerInfoViewModel.progressBarVisibility.set(View.INVISIBLE);
-                        singerInfoViewModel.imageVisibility.set(View.VISIBLE);
-                        singerInfoViewModel.errorViewVisibility.set(View.VISIBLE);
+                        singerInfoViewModel.isImageLoading.set(false);
+                        singerInfoViewModel.isImageVisible.set(true);
+                        singerInfoViewModel.hasError.set(true);
                     }}
                 );
     }

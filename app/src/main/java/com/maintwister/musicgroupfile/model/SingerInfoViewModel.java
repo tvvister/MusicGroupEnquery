@@ -91,9 +91,9 @@ public class SingerInfoViewModel {
         return URLUtil.isHttpUrl(link) || URLUtil.isHttpsUrl(link) ? View.VISIBLE : View.GONE;
     }
 
-    final public ObservableField<Integer> progressBarVisibility = new ObservableField<>(View.INVISIBLE);
-    final public ObservableField<Integer> errorViewVisibility = new ObservableField<>(View.GONE);
-    final public ObservableField<Integer> imageVisibility = new ObservableField<>(View.VISIBLE);
+    final public ObservableField<Boolean> isImageLoading = new ObservableField<>(false);
+    final public ObservableField<Boolean> hasError = new ObservableField<>(false);
+    final public ObservableField<Boolean> isImageVisible = new ObservableField<>(false);
 
 
 }

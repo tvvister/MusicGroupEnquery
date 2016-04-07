@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
     <data>
         <variable name="singerInfoViewModel" type="com.maintwister.musicgroupfile.model.SingerInfoViewModel" />
+        <import type="android.view.View"/>
     </data>
 
     <LinearLayout android:orientation="vertical">
@@ -39,12 +40,12 @@
                 android:textColor="@color/colorSmallText"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:visibility="@{singerInfoViewModel.errorViewVisibility}"
+                android:visibility="@{singerInfoViewModel.hasError ? View.VISIBLE : View.GONE}"
                 />
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="@{singerInfoViewModel.progressBarVisibility}"
+                android:visibility="@{singerInfoViewModel.isImageLoading ? View.VISIBLE : View.GONE}"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center" />
