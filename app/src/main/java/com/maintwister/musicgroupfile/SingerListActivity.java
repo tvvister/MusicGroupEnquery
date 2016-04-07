@@ -8,13 +8,13 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.maintwister.musicgroupfile.app.ViewModelActivity;
 import com.maintwister.musicgroupfile.databinding.ActivitySingerListBinding;
 import com.maintwister.musicgroupfile.model.ApplicationViewModel;
 import com.maintwister.musicgroupfile.model.ICallback;
 import com.maintwister.musicgroupfile.model.SingerInfoViewModel;
-import com.maintwister.musicgroupfile.provider.ISendMessage;
 
 public class SingerListActivity extends ViewModelActivity<ApplicationViewModel> {
 
@@ -34,19 +34,21 @@ public class SingerListActivity extends ViewModelActivity<ApplicationViewModel> 
         viewModel.getSingerInfoViewModels(new ICallback<SingerInfoViewModel[]>() {
             @Override
             public void handle(SingerInfoViewModel[] singerInfoViewModels) {
-                SingersRecyclerViewAdapter adapter = new SingersRecyclerViewAdapter(singerInfoViewModels, new ISendMessage() {
-                    @Override
-                    public void sendMessage(SingerInfoViewModel singerInfoViewModel, int x, int y) {
-                        Intent intent = new Intent(SingerListActivity.this, SingerCardActivity.class);
-                        Bundle bundle = null;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            ActivityOptions activityOptions = ActivityOptions.makeScaleUpAnimation(recView, x, y, 100, 100);
-                            bundle = activityOptions.toBundle();
-                            SingerListActivity.this.startActivity(intent, bundle);
-                        } else SingerListActivity.this.startActivity(intent);
-
-                    }
-                }, viewModel.selectedSingerInfoViewModel);
+                SingersRecyclerViewAdapter adapter = new SingersRecyclerViewAdapter(singerInfoViewModels,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(SingerListActivity.this, SingerCardActivity.class);
+                                Bundle bundle = null;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                    ActivityOptions activityOptions = ActivityOptions.makeScaleUpAnimation(recView, v.getLeft(), v.getTop(), 20, 20);
+                                    bundle = activityOptions.toBundle();
+                                    SingerListActivity.this.startActivity(intent, bundle);
+                                } else SingerListActivity.this.startActivity(intent);
+                            }
+                        },
+                        viewModel.selectedSingerInfoViewModel
+                );
                 recView.setAdapter(adapter);
             }
         });

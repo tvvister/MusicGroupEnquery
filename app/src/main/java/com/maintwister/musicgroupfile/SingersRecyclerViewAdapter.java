@@ -10,7 +10,6 @@ import android.widget.ImageView;
 
 import com.maintwister.musicgroupfile.databinding.SingerItemBinding;
 import com.maintwister.musicgroupfile.model.SingerInfoViewModel;
-import com.maintwister.musicgroupfile.provider.ISendMessage;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -18,12 +17,14 @@ import com.squareup.picasso.Picasso;
  */
 public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoViewHolder> {
     SingerInfoViewModel[] singerInfoViewModels;
-    private final ISendMessage sendMessageAction;
+    private final View.OnClickListener onClickListener;
     private final ObservableField<SingerInfoViewModel> selectedSingerInfoViewModel;
 
-    public SingersRecyclerViewAdapter(SingerInfoViewModel[] singerInfoViewModels, final ISendMessage sendMessageAction, ObservableField<SingerInfoViewModel> selectedSingerInfoViewModel) {
+    public SingersRecyclerViewAdapter(SingerInfoViewModel[] singerInfoViewModels,
+                                      final View.OnClickListener onClickListener,
+                                      ObservableField<SingerInfoViewModel> selectedSingerInfoViewModel) {
         this.singerInfoViewModels = singerInfoViewModels;
-        this.sendMessageAction = sendMessageAction;
+        this.onClickListener = onClickListener;
         this.selectedSingerInfoViewModel = selectedSingerInfoViewModel;
     }
 
@@ -31,17 +32,15 @@ public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoV
     public SingerInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         SingerItemBinding binding = SingerItemBinding.inflate(inflater, parent, false);
-        return new SingerInfoViewHolder(binding.getRoot(), sendMessageAction, selectedSingerInfoViewModel);
+        return new SingerInfoViewHolder(binding.getRoot(), onClickListener, selectedSingerInfoViewModel);
     }
 
     @Override
     public void onBindViewHolder(SingerInfoViewHolder holder, int position) {
         SingerInfoViewModel singerInfo = singerInfoViewModels[position];
-        holder.binding.setSingerInfoViewModel(singerInfo);
+        holder.setSingerInfo(singerInfo);
     }
-    public SingerInfoViewModel getSingerInfo(int position) {
-        return singerInfoViewModels[position];
-    }
+
     @Override
     public int getItemCount() {
         return singerInfoViewModels.length;

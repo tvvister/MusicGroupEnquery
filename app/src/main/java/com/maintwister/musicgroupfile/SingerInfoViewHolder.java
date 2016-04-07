@@ -7,24 +7,30 @@ import android.view.View;
 
 import com.maintwister.musicgroupfile.databinding.SingerItemBinding;
 import com.maintwister.musicgroupfile.model.SingerInfoViewModel;
-import com.maintwister.musicgroupfile.provider.ISendMessage;
 
 public class SingerInfoViewHolder extends RecyclerView.ViewHolder {
-    private final View v;
-    private final ISendMessage sendMessageAction;
+    private final View view;
+    private final View.OnClickListener onClickListener;
     private final ObservableField<SingerInfoViewModel> selectedSingerInfoViewModel;
-    SingerItemBinding binding;
-    public SingerInfoViewHolder(View v, final ISendMessage sendMessageAction, ObservableField<SingerInfoViewModel> selectedSingerInfoViewModel) {
-        super(v);
-        this.v = v;
-        this.sendMessageAction = sendMessageAction;
+    private SingerItemBinding binding;
+
+    public void setSingerInfo(SingerInfoViewModel singerInfoViewModel) {
+        binding.setSingerInfoViewModel(singerInfoViewModel);
+    }
+
+    public SingerInfoViewHolder(final View view,
+                                final View.OnClickListener onClickListener,
+                                final ObservableField<SingerInfoViewModel> selectedSingerInfoViewModel) {
+        super(view);
+        this.view = view;
+        this.onClickListener = onClickListener;
         this.selectedSingerInfoViewModel = selectedSingerInfoViewModel;
-        binding = DataBindingUtil.bind(v);
-        v.setOnClickListener(new View.OnClickListener() {
+        binding = DataBindingUtil.bind(view);
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                SingerInfoViewHolder.this.selectedSingerInfoViewModel.set(binding.getSingerInfoViewModel());
-                sendMessageAction.sendMessage(binding.getSingerInfoViewModel(), v.getWidth() / 2, (int)((v.getY() + v.getHeight()) / 2));
+            public void onClick(View view) {
+                selectedSingerInfoViewModel.set(binding.getSingerInfoViewModel());
+                onClickListener.onClick(view);
             }
         });
     }

@@ -6,16 +6,14 @@
     <data>
         <variable name="singerInfoViewModel" type="com.maintwister.musicgroupfile.model.SingerInfoViewModel" />
     </data>
-
-
             <LinearLayout android:orientation="horizontal">
                 <RelativeLayout
                     android:layout_gravity="left"
-                    android:layout_weight="1"
+                    android:layout_weight="1.2"
                     android:id="@+id/relative_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <com.maintwister.musicgroupfile.view.ImageViewTopCrop
+                    <ImageView
 
                         app:imageUrl="@{singerInfoViewModel.big}"
                         app:singerInfoViewModel="@{singerInfoViewModel}"
@@ -38,7 +36,7 @@
                 <ScrollView
                     android:layout_gravity="right"
                     android:layout_weight="1"
-                    android:id="@+id/ScrlView"
+                    android:id="@+id/scrlView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -69,7 +67,7 @@
                     <TextView android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorBigText"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/bigTextSize"
                         android:padding="3dp"
                         android:text="@string/desc_title"/>
 
