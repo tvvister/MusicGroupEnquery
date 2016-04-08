@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
->
+    >
     <data>
         <import type="android.view.View"/>
         <variable name="singerInfoViewModel" type="com.maintwister.musicgroupfile.model.SingerInfoViewModel" />
@@ -14,18 +14,20 @@
         <RelativeLayout
             android:id="@+id/relative_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.9"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:layout_weight="0.7"
             android:layout_gravity="left"
             >
             <ImageView
                 android:animateLayoutChanges="true"
+                android:id="@+id/imageView"
                 app:imageUrl="@{singerInfoViewModel.small}"
                 app:singerInfoViewModel="@{singerInfoViewModel}"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:visibility="@{singerInfoViewModel.isImageVisible ? View.VISIBLE : View.INVISIBLE}"
-                 />
+                />
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,32 +46,37 @@
 
         </RelativeLayout>
 
-        <LinearLayout
+
+
+        <RelativeLayout
             android:animateLayoutChanges="true"
             android:padding="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:layout_gravity="left"
-            android:gravity="top">
+            android:layout_gravity="left">
             <TextView android:layout_width="wrap_content"
+                android:id="@+id/nameTextView"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/bigTextSize"
                 android:textColor="@color/colorBigText"
+                android:layout_alignParentTop="true"
                 android:text="@{singerInfoViewModel.name}"/>
             <TextView android:layout_width="wrap_content"
                 android:textColor="@color/colorSmallText"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/nameTextView"
                 android:text="@{singerInfoViewModel.genresString}" />
 
             <TextView android:layout_width="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_weight="1"
                 android:textColor="@color/colorSmallText"
                 android:gravity="bottom"
                 android:layout_height="wrap_content"
                 android:text="@{singerInfoViewModel.musicCount}"/>
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </layout>

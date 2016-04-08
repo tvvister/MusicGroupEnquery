@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.maintwister.musicgroupfile.databinding.SingerItemBinding;
 import com.maintwister.musicgroupfile.model.SingerInfoViewModel;
@@ -26,6 +27,17 @@ public class SingerInfoViewHolder extends RecyclerView.ViewHolder {
         this.onClickListener = onClickListener;
         this.selectedSingerInfoViewModel = selectedSingerInfoViewModel;
         binding = DataBindingUtil.bind(view);
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                View imageView = view.findViewById(R.id.imageView);
+
+                ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+                layoutParams.height = imageView.getWidth();
+
+                imageView.setLayoutParams(layoutParams);
+            }
+        });
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
