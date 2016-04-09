@@ -18,6 +18,8 @@ import com.maintwister.musicgroupfile.model.SingerInfoViewModel;
 
 public class SingerListActivity extends ViewModelActivity<ApplicationViewModel> {
 
+    public static final String CONNECTION_FAILED_DIALOG = "ConnectionFailedDialog";
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -28,28 +30,65 @@ public class SingerListActivity extends ViewModelActivity<ApplicationViewModel> 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
+
         final RecyclerView recView = (RecyclerView) findViewById(R.id.recView);
         recView.setLayoutManager(new LinearLayoutManager(this));
+
+        loadSingers(viewModel, recView);
+    }
+
+
+
+    private ConnectionFailedDialog GetFailedDialog(final ApplicationViewModel viewModel, final RecyclerView recView) {
+        ConnectionFailedDialog dialog = (ConnectionFailedDialog) getFragmentManager().findFragmentByTag(CONNECTION_FAILED_DIALOG);
+        dialog = dialog == null ? new ConnectionFailedDialog() : dialog;
+        dialog.setReplyCommand(new ICallback() {
+            @Override
+            public void handle(Object o) {
+                loadSingers(viewModel, recView);
+            }
+        });
+        return dialog;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        ConnectionFailedDialog dialog = (ConnectionFailedDialog) getFragmentManager().findFragmentByTag(CONNECTION_FAILED_DIALOG);
+        if(dialog != null) {
+            dialog.setReplyCommand(null);
+            dialog.dismiss();}
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    private void loadSingers(final ApplicationViewModel viewModel, final RecyclerView recView) {
 
         viewModel.getSingerInfoViewModels(new ICallback<SingerInfoViewModel[]>() {
             @Override
             public void handle(SingerInfoViewModel[] singerInfoViewModels) {
-                SingersRecyclerViewAdapter adapter = new SingersRecyclerViewAdapter(singerInfoViewModels,
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(SingerListActivity.this, SingerCardActivity.class);
-                                Bundle bundle = null;
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                    ActivityOptions activityOptions = ActivityOptions.makeScaleUpAnimation(recView, v.getLeft(), v.getTop(), 20, 20);
-                                    bundle = activityOptions.toBundle();
-                                    SingerListActivity.this.startActivity(intent, bundle);
-                                } else SingerListActivity.this.startActivity(intent);
-                            }
-                        },
-                        viewModel.selectedSingerInfoViewModel
-                );
-                recView.setAdapter(adapter);
+
+                if (!viewModel.hasListLoadingError.get()) {
+                    SingersRecyclerViewAdapter adapter = new SingersRecyclerViewAdapter(singerInfoViewModels,
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(SingerListActivity.this, SingerCardActivity.class);
+                                    Bundle bundle = null;
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                        ActivityOptions activityOptions = ActivityOptions.makeScaleUpAnimation(recView, v.getLeft(), v.getTop(), v.getWidth(),  v.getHeight());
+                                        bundle = activityOptions.toBundle();
+                                        SingerListActivity.this.startActivity(intent, bundle);
+                                    } else SingerListActivity.this.startActivity(intent);
+                                }
+                            },
+                            viewModel.selectedSingerInfoViewModel
+                    );
+                    recView.setAdapter(adapter);
+                }
+                else {
+                    ConnectionFailedDialog dialog = GetFailedDialog(viewModel, recView);
+                    if (dialog.isAdded()) dialog.dismiss();
+                    dialog.show(getFragmentManager(), CONNECTION_FAILED_DIALOG);
+                }
             }
         });
     }

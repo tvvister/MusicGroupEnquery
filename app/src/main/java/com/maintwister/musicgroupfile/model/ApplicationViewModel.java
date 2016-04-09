@@ -28,18 +28,20 @@ public class ApplicationViewModel {
                 for (int index = 0; index < singerInfos.length; ++index) {
                     singerInfoViewModels[index] = new SingerInfoViewModel(singerInfos[index]);
                 }
-                callback.handle(singerInfoViewModels);
                 isLoading.set(false);
+                hasListLoadingError.set(false);
+                callback.handle(singerInfoViewModels);
             }
             @Override
             public void failure(RetrofitError error) {
-                callback.handle(new SingerInfoViewModel[0]);
                 isLoading.set(false);
+                hasListLoadingError.set(true);
+                callback.handle(new SingerInfoViewModel[0]);
             }
         });
     }
 
     final public ObservableField<SingerInfoViewModel> selectedSingerInfoViewModel = new ObservableField<>(null);
-
+    final public ObservableField<Boolean> hasListLoadingError = new ObservableField<>(false);
     final public ObservableField<Boolean> isLoading = new ObservableField<>(false);
 }

@@ -23,7 +23,6 @@ public class SingerCardActivity extends ViewModelActivity<ApplicationViewModel> 
         final ApplicationViewModel viewModel = getViewModel();
         SingerInfoViewModel singerInfo = viewModel.selectedSingerInfoViewModel.get();
 
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(singerInfo.getName());
         actionBar.setDisplayHomeAsUpEnabled(true);

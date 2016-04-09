@@ -3,4 +3,7 @@
     <string name="main_activity_title">Singers</string>
     <string name="desc_title">Biography</string>
     <string name="loading_error">Loading error</string>
+    <string name="ConnectionFailedMessage">Connection has not been established </string>
+    <string name="replyButtonText">Reply</string>
+    <string name="CancelButtonText">Cancel</string>
 </resources>

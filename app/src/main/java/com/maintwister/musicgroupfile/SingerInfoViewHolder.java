@@ -31,10 +31,8 @@ public class SingerInfoViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void run() {
                 View imageView = view.findViewById(R.id.imageView);
-
                 ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
                 layoutParams.height = imageView.getWidth();
-
                 imageView.setLayoutParams(layoutParams);
             }
         });

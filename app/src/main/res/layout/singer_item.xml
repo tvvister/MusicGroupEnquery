@@ -15,7 +15,7 @@
             android:id="@+id/relative_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dp"
+            android:padding="15dp"
             android:layout_weight="0.7"
             android:layout_gravity="left"
             >
@@ -50,8 +50,8 @@
 
         <RelativeLayout
             android:animateLayoutChanges="true"
-            android:padding="10dp"
             android:orientation="vertical"
+            android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.5"

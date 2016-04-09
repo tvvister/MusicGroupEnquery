@@ -3,5 +3,8 @@
     <string name="main_activity_title">Исполнители</string>
     <string name="desc_title">Биография</string>
     <string name="loading_error">Ошибка загрузки</string>
+    <string name="ConnectionFailedMessage">Не удалось установить соединение с сервером</string>
+    <string name="replyButtonText">Повторить</string>
+    <string name="CancelButtonText">Отмена</string>
 
 </resources>
