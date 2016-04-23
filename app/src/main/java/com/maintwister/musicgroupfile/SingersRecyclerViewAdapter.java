@@ -12,9 +12,6 @@ import com.maintwister.musicgroupfile.databinding.SingerItemBinding;
 import com.maintwister.musicgroupfile.model.SingerInfoViewModel;
 import com.squareup.picasso.Picasso;
 
-/**
- * Created by Andrey on 29.03.2016.
- */
 public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoViewHolder> {
     SingerInfoViewModel[] singerInfoViewModels;
     private final View.OnClickListener onClickListener;
@@ -46,7 +43,7 @@ public class SingersRecyclerViewAdapter extends RecyclerView.Adapter<SingerInfoV
         return singerInfoViewModels.length;
     }
 
-    @BindingAdapter({"bind:imageUrl", "bind:singerInfoViewModel"})
+    @BindingAdapter({"imageUrl", "singerInfoViewModel"})
     public static void loadImage(ImageView view, String imageUrl, final SingerInfoViewModel singerInfoViewModel) {
         singerInfoViewModel.isImageLoading.set(true);
         singerInfoViewModel.isImageVisible.set(false);

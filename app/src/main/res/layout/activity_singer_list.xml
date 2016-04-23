@@ -1,18 +1,21 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
+
     >
     <data>
         <import type="android.view.View"/>
         <variable name="applicationViewModel" type="com.maintwister.musicgroupfile.model.ApplicationViewModel" />
     </data>
-<LinearLayout>    <RelativeLayout
-    android:id="@+id/relative_container"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<LinearLayout>
+    <RelativeLayout
+        android:id="@+id/relative_container"
+        android:paddingTop="@dimen/half_of_vertical_padding"
+        android:paddingBottom="@dimen/half_of_vertical_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recView"
@@ -23,25 +26,12 @@
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="@{applicationViewModel.isLoading ? View.VISIBLE : View.INVISIBLE}"
+        bind:visibility="@{applicationViewModel.isLoading ? View.VISIBLE : View.INVISIBLE}"
         style="?android:attr/progressBarStyleLarge"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:id="@+id/progressBar"
         />
-
-    <!--        <ImageView
-                android:animateLayoutChanges="true"
-                app:imageUrl="@{singerInfoViewModel.small}"
-                app:singerInfoViewModel="@{singerInfoViewModel}"
-                android:width="100dp"
-                android:height="100dp"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:visibility="@{singerInfoViewModel.imageVisibility}"
-                android:layout_height="wrap_content" />
-            <ProgressBar
-     />-->
 
 </RelativeLayout></LinearLayout>
 

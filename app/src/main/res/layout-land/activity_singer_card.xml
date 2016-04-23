@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent">
     <data>
         <import type="android.view.View"/>
@@ -16,8 +15,8 @@
                     android:layout_height="match_parent">
                     <ImageView
 
-                        app:imageUrl="@{singerInfoViewModel.big}"
-                        app:singerInfoViewModel="@{singerInfoViewModel}"
+                        bind:imageUrl="@{singerInfoViewModel.big}"
+                        bind:singerInfoViewModel="@{singerInfoViewModel}"
                         android:layout_gravity="center"
                         android:layout_centerInParent="true"
                         android:scaleType="centerCrop"
@@ -31,12 +30,12 @@
                         android:textColor="@color/colorSmallText"
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
-                        android:visibility="@{singerInfoViewModel.hasError ? View.VISIBLE : View.GONE}"
+                        bind:visibility="@{singerInfoViewModel.hasError ? View.VISIBLE : View.GONE}"
                         />
                     <ProgressBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="@{singerInfoViewModel.isImageLoading ? View.VISIBLE : View.GONE}"
+                        bind:visibility="@{singerInfoViewModel.isImageLoading ? View.VISIBLE : View.GONE}"
                         style="?android:attr/progressBarStyleLarge"
                         android:layout_centerInParent="true"
                         android:layout_gravity="center" />
@@ -56,35 +55,47 @@
                     android:layout_height="wrap_content">
 
                     <TextView android:layout_width="match_parent"
-                        android:padding="3dp"
+                        android:paddingTop="@dimen/half_of_vertical_padding"
+                        android:paddingLeft="@dimen/horizontal_padding"
+                        android:paddingRight="@dimen/horizontal_padding"
                         android:textColor="@color/colorSmallText"
                         android:layout_height="wrap_content"
                         android:text="@{singerInfoViewModel.genresString}" />
                     <TextView android:layout_width="match_parent"
+                        android:paddingTop="@dimen/half_of_vertical_padding"
+                        android:paddingLeft="@dimen/horizontal_padding"
+                        android:paddingRight="@dimen/horizontal_padding"
                         android:textColor="@color/colorSmallText"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
                         android:text="@{singerInfoViewModel.musicCount2}"/>
                     <TextView
                         android:id="@+id/linkTextView"
+                        android:paddingTop="@dimen/half_of_vertical_padding"
+                        android:paddingLeft="@dimen/horizontal_padding"
+                        android:paddingRight="@dimen/horizontal_padding"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="@{singerInfoViewModel.linkVisibility}"
+                        bind:visibility="@{singerInfoViewModel.linkVisibility}"
                         android:autoLink="web"
                         android:linksClickable="true"
-                        android:padding="3dp"
                         android:text="@{singerInfoViewModel.link}" />
                     <TextView android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/half_of_vertical_padding"
+                        android:paddingLeft="@dimen/horizontal_padding"
+                        android:paddingRight="@dimen/horizontal_padding"
                         android:textColor="@color/colorBigText"
-                        android:textSize="@dimen/bigTextSize"
-                        android:padding="3dp"
+                        android:textAppearance="@android:style/TextAppearance.Large"
                         android:text="@string/desc_title"/>
 
                     <TextView android:layout_width="match_parent"
+                        android:gravity="fill_horizontal"
+                        android:paddingTop="@dimen/half_of_vertical_padding"
+                        android:paddingLeft="@dimen/horizontal_padding"
+                        android:paddingRight="@dimen/horizontal_padding"
+                        android:paddingBottom="@dimen/vertical_padding"
                         android:textColor="@color/colorBigText"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
                         android:text="@{singerInfoViewModel.description}"/>
                 </LinearLayout>
                 </ScrollView>
