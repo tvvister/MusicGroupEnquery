@@ -6,4 +6,9 @@
     <string name="ConnectionFailedMessage">Connection has not been established </string>
     <string name="replyButtonText">Reply</string>
     <string name="CancelButtonText">Cancel</string>
+    <string name="aboutText">This application is a test work for Summer Yandex School</string>
+    <string name="positiveButtonText">Ok</string>
+    <string name="feedback_message">Message to owner corporation</string>
+    <string name="owner_email">mnttr@gmail.com</string>
+    <string name="email_subject">Feedback subject</string>
 </resources>

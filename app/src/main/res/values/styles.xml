@@ -7,8 +7,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:scrollbarThumbVertical">@color/colorSmallText</item>-->
-
+        <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
     </style>
+
 <!--    <style name="AppTheme">
         &lt;!&ndash; Customize your theme here. &ndash;&gt;
         <item name="colorPrimary">@color/colorPrimary</item>
