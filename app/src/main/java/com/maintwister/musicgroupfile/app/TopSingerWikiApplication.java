@@ -8,10 +8,14 @@ import com.maintwister.musicgroupfile.provider.ProviderCreator;
  */
 public class TopSingerWikiApplication extends ViewModelApplication<ApplicationViewModel> {
 
-    private final ApplicationViewModel applicationViewModel = new ApplicationViewModel(ProviderCreator.createSingerInfoProvider());
+    private ApplicationViewModel applicationViewModel;
 
     @Override
     public ApplicationViewModel getViewModel(){
+        if (applicationViewModel == null)
+        {
+            applicationViewModel = new ApplicationViewModel(ProviderCreator.createSingerInfoProvider(this));
+        }
         return applicationViewModel;
     }
 
